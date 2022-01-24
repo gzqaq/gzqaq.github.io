@@ -8,9 +8,9 @@ Currently my research interest lies in **Maching Learning**, under the supervisi
 
 - Current GPA: 3.8/4.3
 - Selected A+/A Courses:]
-- - CS1603: Programming (A+)
-- - CS2601: Linear and Convex Optimization (A+)
-- - EST2501: Digital Electronics (A+)
-- - AI2618: Lab of electronic and electrical system	(A+)
-- - MATH1207: Probability and Statistics (A)
-- - CS2602: Data Structure (A)
+  - CS1603: Programming (A+)
+  - CS2601: Linear and Convex Optimization (A+)
+  - EST2501: Digital Electronics (A+)
+  - AI2618: Lab of electronic and electrical system	(A+)
+  - MATH1207: Probability and Statistics (A)
+  - CS2602: Data Structure (A)
