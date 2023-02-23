@@ -1,8 +1,9 @@
 theme: jekyll-theme-minimal
 title: Ziqin Gong
-discription: A sophomore in SJTU
+discription: A junior in SJTU
 logo: /assets/img/avatar.JPG
 show_downloads: true
 github:
   email_url: mailto:gongzq0301@sjtu.edu.cn
-  github_url: https://github.com/ZiqinGong
+  github_url: https://github.com/gzqaq
+  repository_url: https://github.com/gzqaq/gzqaq.github.io
