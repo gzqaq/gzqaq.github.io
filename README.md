@@ -1,3 +1,3 @@
-# ziqingong.github.io
+# gzqaq.github.io
 
-Ziqin Gong's personal website.
+Ziqin Gong's personal website. [URL](https://gzqaq.github.io)
