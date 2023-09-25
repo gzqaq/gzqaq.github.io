@@ -1,25 +1,27 @@
-# Ziqin Gong (龚子钦)
+---
+layout: homepage
+---
+
+## About Me
 
 I am a senior student majoring in **Computer Science and Technology (IEEE Honor Class)** in [Shanghai Jiao Tong University](https://www.sjtu.edu.cn).
 
-Currently my research interest lies in **Reinforcement Learning**, under the supervision of Professor [Weinan Zhang](http://wnzhang.net/) in [John Hopcroft Center for Computer Science](https://jhc.sjtu.edu.cn/) of SJTU.
+Currently my research interest lies in **Reinforcement Learning**, under the supervision of Professor [Weinan Zhang](http://wnzhang.net) in [John Hopcroft Center for Computer Science](https://jhc.sjtu.edu.cn) of SJTU.
 
-## Publications
+## Research Interests
 
-### RITA: Boost Autonomous Driving Simulators with Realistic Interactive Traffic Flow
-
-- Contribution: Zhengbang Zhu, Shenyu Zhang, Yuzheng Zhuang, Yuecheng liu, Minghuan Liu, Liyuan Mao, **Ziqin Gong**, Weinan Zhang, Shixiong Kai, Qiang Gu, Bin Wang, Siyuan Cheng, Xinyu Wang, Jianye Hao, Yongyu
-- Topic: Artificial Intelligence, Multiagent Systems, Robotics
-- [arXiv](https://arxiv.org/abs/2211.03408)
+- **Reinforcement Learning:** offline, off-policy, hierarchical, causal
 
 ## Academic Performance
 
 - Current GPA: 87.84/100
-- Selected A+/A Courses:
-  - CS1603: Programming (A+)
+- Selected A+/A courses:
   - CS2601: Linear and Convex Optimization (A+)
-  - AI2618: Lab of electronic and electrical system	(A+)
+  - CS1603: Programming (A+)
+  - AI2618: Lab of Electronic and Electrical System (A+)
   - AI3603: Artificial Intelligence Principles and Applications (A)
   - MATH1207: Probability and Statistics (A)
-  - CS3601: Operating System (A)
-  - CS2602: Data Structure (A)
+
+{% include_relative _includes/publications.md %}
+
+<!-- {% include_relative _includes/services.md %} -->
