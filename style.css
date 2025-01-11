@@ -19,6 +19,7 @@ p:last-child {
 
 a {
     color: #2C9678; /* #0088d5;*/
+    font-weight: 450;
     text-decoration: none;
 }
 
