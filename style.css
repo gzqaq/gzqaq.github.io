@@ -1,0 +1,27 @@
+body {
+  background-color: #fff;
+  font-family: 'Asap', sans-serif;
+}
+
+ul.navbar-nav li a {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 85%;
+    color: #999 !important;
+    padding-bottom: 13px;
+    background-color: rgba(0,0,0,0) !important;
+}
+
+ul.navbar-nav li.active a {
+    color: #000 !important;
+}
+
+ul.navbar-nav li:nth-child(1).active {
+    border-bottom: 3.5px solid #008ed0;
+}
+
+ul.navbar-nav li {
+    border-bottom: 3.5px solid rgba(0,0,0,0);
+    margin-left: 5px;
+    margin-right: 5px;
+}
