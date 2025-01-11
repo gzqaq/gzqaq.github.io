@@ -59,6 +59,10 @@ hr {
     border-color: #b1b1b1;
 }
 
+code {
+    color: #2C9678;
+}
+
 div.paper-link-panel > a {
     display: inline-block;
 }
