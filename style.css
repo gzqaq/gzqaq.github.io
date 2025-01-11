@@ -1,11 +1,34 @@
 body {
   background-color: #fff;
-  font-size: 14.2px;
+  /* font-size: 14.2px; */
   font-family: 'Asap', sans-serif;
 }
 
 body .container, body .container-xxl {
     margin-left: 2%;
+}
+
+body .side-column {
+    max-width: 440px;
+}
+
+body p {
+    line-height: 1.55;
+}
+
+p:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+a {
+    color: #2775b6; /* #0088d5;*/
+    text-decoration: none;
+}
+
+.side-column {
+    margin-bottom: 1cm;
+    padding-right: 5%;
 }
 
 @media (min-width: 1400px) {
@@ -19,6 +42,18 @@ nav.navbar {
     margin-bottom: 30px;
     padding-bottom: 0px;
     border-radius: 2px;
+}
+
+card {
+    display: block;
+    background-color: #fff;
+    border-radius: 2px;
+    margin-bottom: 20px;
+}
+
+card div.card-title {
+    display: flex;
+    padding: 20px 16px 10px 16px;
 }
 
 ul.navbar-nav {
