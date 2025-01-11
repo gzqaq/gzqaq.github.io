@@ -5,11 +5,7 @@ body {
 }
 
 body .container, body .container-xxl {
-    margin-left: 2%;
-}
-
-body .side-column {
-    max-width: 440px;
+    /* margin-left: 2%; */
 }
 
 body p {
@@ -26,6 +22,101 @@ a {
     text-decoration: none;
 }
 
+h1 {
+    font-weight: 400;
+    margin-top: 0;
+}
+
+h3 {
+    font-weight: 400;
+    margin-top: 0;
+    font-size: 200%;
+}
+
+h3.xbulleted {
+    font-weight: 500;
+    font-size: 128%;
+    margin-bottom: 15px;
+    margin-top: 0px;
+}
+
+h4 {
+    font-size: 160%;
+}
+
+h4.publications {
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 120%;
+}
+
+hr {
+    border-color: #b1b1b1;
+}
+
+div.paper-link-panel > a {
+    display: inline-block;
+}
+
+div.paper-link-panel span.article-authors {
+    color: #346c9c;
+    font-size: 95%;
+    font-style: italic;
+    display: block;
+}
+
+div.paper-link-panel span.article-authors a {
+    color: #346c9c;
+    /* text-decoration: underline dotted rgba(49,112,143,0.4); */
+    text-underline-offset: 2pt;
+}
+
+table.desc-table {
+    width: 100%;
+}
+
+table.desc-table > tbody > tr > td {
+    padding-bottom: 2px;
+}
+
+table.desc-table > tbody > tr > td:first-child {
+    vertical-align: top;
+    width: 90px;
+    color: #0e69ac;
+    text-align: right;
+    font-weight: 200;
+    font-size: 90%;
+}
+
+table.desc-table > tbody > tr > td:last-child {
+    padding-left: 14px;
+    font-weight: 400;
+    text-align: justify;
+    color: #333 !important;
+}
+
+table.desc-table.desc-table-notes > tbody > tr > td:first-child {
+    padding-top: 5px;
+    font-weight: 400;
+    /* color: gray; */
+    color: #0e69ac;
+}
+
+span.hnumber {
+    font-size: 105%;
+    margin-right: 1mm;
+}
+
+span.article-awards {
+    color: #31708f;
+    display: block;
+    font-size: 90%;
+}
+
+body .side-column {
+    max-width: 440px;
+}
+
 .side-column {
     margin-bottom: 1cm;
     padding-right: 5%;
@@ -34,6 +125,20 @@ a {
 @media (min-width: 1400px) {
     .container-xxl {
         max-width: 1400px;
+    }
+}
+
+@media (min-width:992px) {
+    .col-lg-4 {
+        flex: 0 0 auto;
+        width: 33.33333333%;
+    }
+}
+
+@media (min-width:992px) {
+    .col-lg-8 {
+        flex: 0 0 auto;
+        width: 66.66666667%;
     }
 }
 
@@ -54,6 +159,15 @@ card {
 card div.card-title {
     display: flex;
     padding: 20px 16px 10px 16px;
+}
+
+card div.card-body {
+    padding: 16px 16px 16px 16px;
+}
+
+card.research-interest {
+    background-color: #f6f6f6;
+    border-radius: 5mm;
 }
 
 ul.navbar-nav {
