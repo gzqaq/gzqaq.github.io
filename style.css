@@ -18,7 +18,7 @@ p:last-child {
 }
 
 a {
-    color: #2775b6; /* #0088d5;*/
+    color: #2C9678; /* #0088d5;*/
     text-decoration: none;
 }
 
@@ -59,14 +59,14 @@ div.paper-link-panel > a {
 }
 
 div.paper-link-panel span.article-authors {
-    color: #346c9c;
+    color: #2C9678;
     font-size: 95%;
     font-style: italic;
     display: block;
 }
 
 div.paper-link-panel span.article-authors a {
-    color: #346c9c;
+    color: #2C9678;
     /* text-decoration: underline dotted rgba(49,112,143,0.4); */
     text-underline-offset: 2pt;
 }
@@ -82,7 +82,7 @@ table.desc-table > tbody > tr > td {
 table.desc-table > tbody > tr > td:first-child {
     vertical-align: top;
     width: 90px;
-    color: #0e69ac;
+    color: #2C9678;
     text-align: right;
     font-weight: 200;
     font-size: 90%;
@@ -99,7 +99,7 @@ table.desc-table.desc-table-notes > tbody > tr > td:first-child {
     padding-top: 5px;
     font-weight: 400;
     /* color: gray; */
-    color: #0e69ac;
+    color: #2C9678;
 }
 
 span.hnumber {
@@ -108,7 +108,7 @@ span.hnumber {
 }
 
 span.article-awards {
-    color: #31708f;
+    color: #2C9678;
     display: block;
     font-size: 90%;
 }
@@ -194,5 +194,5 @@ ul.navbar-nav li.active a {
 }
 
 ul.navbar-nav li:nth-child(1).active {
-    border-bottom: 3.5px solid #008ed0;
+    border-bottom: 3.5px solid #2C9678;
 }

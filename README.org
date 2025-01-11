@@ -4,3 +4,12 @@
 Ziqin Gong's [[https://gzqaq.github.io][personal website]].
 
 Still in progress.
+
+*** Color palette
+Created by https://color.adobe.com/create/color-wheel.
+| Main color | Color harmony | Color 1 | Color 2 | Color 3 (main) | Color 4 | Color 5 |
+|------------+---------------+---------+---------+----------------+---------+---------|
+| #2c9678    | shades        | #21735C | #154A3B | #2C9678        | #45EDBD | #39C49D |
+| #1ba784    | analogous     | #1BA654 | #1B9AA6 | #1BA784        | #1BA624 | #1B6EA6 |
+| #2775b6    | analogous     | #26A2B5 | #2648B5 | #2775B6        | #26B599 | #3226B5 |
+| #2775b6    | shades        | #1F5E91 | #164369 | #2775B6        | #0D2940 | #3092E3 |
