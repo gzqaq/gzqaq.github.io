@@ -23,6 +23,10 @@ a {
     text-decoration: none;
 }
 
+span.article-title {
+    /* color: #2C9654; */
+}
+
 h1 {
     font-weight: 400;
     margin-top: 0;
@@ -60,14 +64,14 @@ div.paper-link-panel > a {
 }
 
 div.paper-link-panel span.article-authors {
-    color: #2C9678;
+    /* color: #9abeaf; */
     font-size: 95%;
     font-style: italic;
     display: block;
 }
 
 div.paper-link-panel span.article-authors a {
-    color: #2C9678;
+    /* color: #9abeaf; */
     /* text-decoration: underline dotted rgba(49,112,143,0.4); */
     text-underline-offset: 2pt;
 }
@@ -83,7 +87,7 @@ table.desc-table > tbody > tr > td {
 table.desc-table > tbody > tr > td:first-child {
     vertical-align: top;
     width: 90px;
-    color: #2C9678;
+    /* color: #2C9678; */
     text-align: right;
     font-weight: 200;
     font-size: 90%;
@@ -99,8 +103,7 @@ table.desc-table > tbody > tr > td:last-child {
 table.desc-table.desc-table-notes > tbody > tr > td:first-child {
     padding-top: 5px;
     font-weight: 400;
-    /* color: gray; */
-    color: #2C9678;
+    /* color: #9abeaf; */
 }
 
 span.hnumber {
