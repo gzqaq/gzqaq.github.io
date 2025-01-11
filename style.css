@@ -130,6 +130,15 @@ body .side-column {
     padding-right: 5%;
 }
 
+@media (max-width: 990px) {
+  .collapsible-side-col {
+    display: none;
+  }
+  #content.article .toc-container {
+    display: block;
+  }
+}
+
 @media (min-width: 1400px) {
     .container-xxl {
         max-width: 1400px;
