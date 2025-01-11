@@ -3,4 +3,4 @@
 
 Ziqin Gong's [[https://gzqaq.github.io][personal website]].
 
-Powered by [[https://jekyllrb.com/][Jekyll]] and [[https://github.com/yaoyao-liu/minimal-light][Minimal Light]] theme.
+Still in progress.
