@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-05-20 Wed 11:14 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>World Model for Science Experiments</title>
+<meta name="author" content="Ziqin Gong" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/hideshow.css"/>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/bigblow.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/hideshow.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">World Model for Science Experiments</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3ffd9b0">1. 自然科学实验中的机器人为什么需要 Action-Conditioned Predictive Structure</a>
+<ul>
+<li><a href="#org3827310">1.1. 实验执行的核心不是「做出动作」，而是「动作是否造成了预期状态」</a></li>
+<li><a href="#org00f092b">1.2. 主流 VLA 多依赖 imitation learning，对未来后果建模不足</a></li>
+<li><a href="#org800590a">1.3. RL 理论上可以学到未来感知，但在自然科学实验中代价太高</a></li>
+<li><a href="#org8efcea2">1.4. 长程 protocol 对 reactive policy 不友好</a></li>
+<li><a href="#org425699d">1.5. 它支持 early stop 和 execution monitoring</a></li>
+<li><a href="#orgf4552ae">1.6. 它能更好利用稀缺数据</a></li>
+<li><a href="#orgc9e95b6">1.7. 它有助于泛化到新器材、新液体和新 layout</a></li>
+<li><a href="#orga6b3861">1.8. 它为多模态感测提供统一的对齐目标</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+这里的 world model，并不特指一个独立的、显式 rollout 的环境模拟器；更广义地说，它指的是任何能让 policy 学到 action-conditioned predictive structure 的机制。这种机制可以是外部的 video prediction module，也可以是与 policy 共享骨干的 video-action model，还可以是内化在 VLA 表征中的 latent foresight objective。不同方法在架构上差异很大，但它们指向同一个问题：没有对未来的预测结构，机器人很难在物理世界中稳定地行动。
+</p>
+<div id="outline-container-org3ffd9b0" class="outline-2">
+<h2 id="org3ffd9b0"><span class="section-number-2">1.</span> 自然科学实验中的机器人为什么需要 Action-Conditioned Predictive Structure</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3827310" class="outline-3">
+<h3 id="org3827310"><span class="section-number-3">1.1.</span> 实验执行的核心不是「做出动作」，而是「动作是否造成了预期状态」</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+化学、生物、医药实验中的许多操作，例如移液、称量、倒液、混合、加热、清洗，本质上都不是单纯的 motor task。真正重要的是：操作后的实验状态是否正确改变。 因此，机器人需要建模：
+</p>
+
+<blockquote>
+<p>
+如果我执行这个动作，实验状态应该如何变化？
+</p>
+</blockquote>
+
+<p>
+这是 imitation-based VLA 或 reactive policy 通常缺少的结构。
+</p>
+</div>
+</div>
+<div id="outline-container-org00f092b" class="outline-3">
+<h3 id="org00f092b"><span class="section-number-3">1.2.</span> 主流 VLA 多依赖 imitation learning，对未来后果建模不足</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+目前很多 VLA-style robot policies 主要学的是：
+</p>
+
+<blockquote>
+<p>
+observation + instruction → action
+</p>
+</blockquote>
+
+<p>
+这种方式可以学到示范中的局部行为，但不一定学到 action 的 consequence。它可能知道在某个画面下应该移液，但不知道移液后液体体积、重量、液面或 sensor reading 应该如何变化。
+</p>
+
+<p>
+所以它容易把 <b>motion completion</b> 误当成 <b>experiment completion</b>​。
+</p>
+</div>
+</div>
+<div id="outline-container-org800590a" class="outline-3">
+<h3 id="org800590a"><span class="section-number-3">1.3.</span> RL 理论上可以学到未来感知，但在自然科学实验中代价太高</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+RL 可以通过 reward 和 value function 让 reactive policy 内化某种对未来的估计。 但在自然科学实验中，model-free RL 通常不现实：
+</p>
+
+<ul class="org-ul">
+<li>高保真 simulator 缺失；</li>
+<li>真机 trial-and-error 昂贵；</li>
+<li>失败可能污染样品、浪费试剂或破坏流程；</li>
+<li>reward 稀疏且难以设计；</li>
+<li>长程 protocol 的 credit assignment 很难。</li>
+</ul>
+
+<p>
+因此，action-conditioned predictive structure 提供了一条中间路线：不依赖大量真实试错，而是从有限 demonstrations、execution traces、sensor logs 和失败案例中学习 action → state transition。
+</p>
+</div>
+</div>
+<div id="outline-container-org8efcea2" class="outline-3">
+<h3 id="org8efcea2"><span class="section-number-3">1.4.</span> 长程 protocol 对 reactive policy 不友好</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+自然科学实验往往是长程流程，而不是单步操作。早期的小错误可能在很久之后才暴露。 纯 reactive policy 主要依赖当前观测，难以稳定维持：
+</p>
+
+<ul class="org-ul">
+<li>哪一步已完成；</li>
+<li>哪些试剂已加入；</li>
+<li>哪个容器对应哪个条件；</li>
+<li>当前状态是否仍符合后续步骤前提。</li>
+</ul>
+
+<p>
+Predictive structure 可以把 protocol 表示成一条状态转移轨迹，使机器人追踪 execution progress，而不是只执行孤立命令。
+</p>
+</div>
+</div>
+<div id="outline-container-org425699d" class="outline-3">
+<h3 id="org425699d"><span class="section-number-3">1.5.</span> 它支持 early stop 和 execution monitoring</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+自然科学实验中，很多错误应该在中间步骤被发现，而不是等到最终结果失败。 如果模型能预测某一步后应该出现什么状态，就可以比较：
+</p>
+
+<blockquote>
+<p>
+predicted state vs. observed state
+</p>
+</blockquote>
+
+<p>
+一旦偏差过大，系统可以 early stop、重试、补偿、重新校准，或标记该次实验 invalid。 这对保护上层 BO / active learning 的 feedback quality 很重要。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf4552ae" class="outline-3">
+<h3 id="orgf4552ae"><span class="section-number-3">1.6.</span> 它能更好利用稀缺数据</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+自然科学机器人数据通常稀缺，尤其是高品质 demonstrations、失败案例、sensor traces 和完整 action labels。 纯 imitation learning 需要大量覆盖不同场景的示范；RL 又需要大量试错。
+</p>
+
+<p>
+Action-conditioned predictive structure 可以利用更密集的 temporal supervision，例如：
+</p>
+
+<ul class="org-ul">
+<li>动作前后的状态变化；</li>
+<li>视觉 / 重量 / 仪器读数的时间序列；</li>
+<li>成功与失败 execution traces；</li>
+<li>部分完成或异常中止的实验数据。</li>
+</ul>
+
+<p>
+它不只是学“专家做了什么”，而是学“世界如何因动作而变化”。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc9e95b6" class="outline-3">
+<h3 id="orgc9e95b6"><span class="section-number-3">1.7.</span> 它有助于泛化到新器材、新液体和新 layout</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+泛化问题部分来自第 1 点。 如果模型只学 observation → action，很容易依赖训练环境中的外观 shortcut。 但如果模型学到的是 action 对实验状态的影响，例如液体如何流动、重量如何变化、容器位置如何影响操作，那么它更有机会迁移到新容器、新光照、新液体黏度或新实验台配置。
+</p>
+</div>
+</div>
+<div id="outline-container-orga6b3861" class="outline-3">
+<h3 id="orga6b3861"><span class="section-number-3">1.8.</span> 它为多模态感测提供统一的对齐目标</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+自然科学实验不能只靠 RGB。透明器皿、液体体积、重量、pH、温度、光谱、力觉、仪器 log 和 protocol history 都可能是必要信号。VLA 通常以视觉-语言为主，即使加入 sensor，也不一定有结构去对齐 sensor、action history 和 protocol state，而 world model 方便把这些模态对齐到同一个问题上：
+</p>
+
+<blockquote>
+<p>
+给定当前 experimental state 和 action，下一个 state 应该是什么？
+</p>
+</blockquote>
+
+<p>
+不过，多模态对齐本身仍然是挑战，包括时间同步、噪音、尺度差异、missing modality 和 sensor reliability。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Ziqin Gong</p>
+<p class="date">Created: 2026-05-20 Wed 11:14</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
